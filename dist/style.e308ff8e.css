@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  border: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body, html {
+  height: 100vh;
+}
+
+.wrapper {
+  height: 100vh;
+  /* background: linear-gradient(to right, #04C6AE,#04C6AE 0% 30% ,#FAFAFA 70%); */
+  background: linear-gradient(to right, #04C6AE 30%, #FAFAFA 30% );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calculator-body {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.output-panel {
+  width: 99.3%;
+  height: 20vh;
+  border: 1px solid #EFEFEF;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 3;
+  grid-template-rows: 3;
+  grid-template-areas: 
+    'top top top'
+    'ml ml ml'
+    'bl br br';
+}
+
+.output-panel-row {
+  min-height: 5vh;
+  display: flex;
+  align-items: flex-end;
+}
+.box-1 {
+  grid-area: top;
+}
+
+.box-2 {
+  grid-area: ml;
+  text-align: right;
+  word-wrap: break-word;
+}
+
+.box-3 {
+  grid-area: bl;
+  text-align: left;
+  align-self: end;
+  word-wrap: break-word;
+}
+
+.box-4 {
+  grid-area: br;
+  text-align: right;
+  align-self: end;
+  word-wrap: break-word;
+}
+
+.button-set {
+  min-height: 30vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.button {
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.border-button {
+  border-bottom: 1px solid #EFEFEF;
+  border-left: 1px solid #EFEFEF;
+}
+
+.side-button-border {
+  border-left: 1px solid #EFEFEF;
+  border-right: 1px solid #EFEFEF;;
+}
+
+.equals {
+  background-color: #04C6AE;
+  color: white;
+}
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
