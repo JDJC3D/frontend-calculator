@@ -38,7 +38,6 @@ function firstCalculation() {
     sendToScreen(firstPartOfCalculation, middlePanel);
   } else {
     const firstPartOfCalculation2 = firstPartOfCalculation.substr(1);
-    console.log(firstPartOfCalculation2);
     clearScreen();
     sendToScreen(firstPartOfCalculation2, middlePanel);
   }
@@ -52,32 +51,42 @@ function returnResult(firstPart, operator, secondPart) {
       case `+`:
         total = parseInt(firstPart) + parseInt(secondPart);
         if (total.toString().length > 9) {
+          sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
           return parseInt(total).toExponential(5);
         }
+        sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
         return parseInt(total);
       case `-`:
         total = parseInt(firstPart) - parseInt(secondPart);
         if (total.toString().length > 9) {
+          sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
           return parseInt(total).toExponential(5);
         }
+        sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
         return parseInt(total);
       case `*`:
         total = parseInt(firstPart) * parseInt(secondPart);
         if (total.toString().length > 9) {
+          sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
           return parseInt(total).toExponential(5);
         }
+        sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
         return parseInt(total);
       case `/`:
         total = parseInt(firstPart) / parseInt(secondPart);
         if (total.toString().length > 9) {
+          sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
           return parseInt(total).toExponential(5);
         }
+        sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
         return parseInt(total);
       case `%`:
         total = (parseInt(firstPart) / 100) * parseInt(secondPart);
         if (total.toString().length > 9) {
+          sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
           return parseInt(total).toExponential(5);
         }
+        sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
         return parseInt(total);
       case `=`:
         break;
@@ -85,7 +94,6 @@ function returnResult(firstPart, operator, secondPart) {
         break;
     }
   }
-  sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
 }
 
 function buttonAction(btnPrsd) {
@@ -120,7 +128,7 @@ function buttonAction(btnPrsd) {
       sendToScreen(`%`, bottomLeft);
       break;
     case `=`:
-      if (middlePanel.innerText !== `` && bottomPanel.innerText !== ``) {
+      if (middlePanel.innerText !== `` && bottomPanel.innerText !== `` && bottomLeft.innerText !== `=`) {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
         bottomLeft.innerHTML = `=`;
       }

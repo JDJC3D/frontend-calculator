@@ -159,7 +159,6 @@ function firstCalculation() {
     sendToScreen(firstPartOfCalculation, middlePanel);
   } else {
     var firstPartOfCalculation2 = firstPartOfCalculation.substr(1);
-    console.log(firstPartOfCalculation2);
     clearScreen();
     sendToScreen(firstPartOfCalculation2, middlePanel);
   }
@@ -176,45 +175,55 @@ function returnResult(firstPart, operator, secondPart) {
         total = parseInt(firstPart) + parseInt(secondPart);
 
         if (total.toString().length > 9) {
+          sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
           return parseInt(total).toExponential(5);
         }
 
+        sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
         return parseInt(total);
 
       case "-":
         total = parseInt(firstPart) - parseInt(secondPart);
 
         if (total.toString().length > 9) {
+          sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
           return parseInt(total).toExponential(5);
         }
 
+        sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
         return parseInt(total);
 
       case "*":
         total = parseInt(firstPart) * parseInt(secondPart);
 
         if (total.toString().length > 9) {
+          sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
           return parseInt(total).toExponential(5);
         }
 
+        sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
         return parseInt(total);
 
       case "/":
         total = parseInt(firstPart) / parseInt(secondPart);
 
         if (total.toString().length > 9) {
+          sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
           return parseInt(total).toExponential(5);
         }
 
+        sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
         return parseInt(total);
 
       case "%":
         total = parseInt(firstPart) / 100 * parseInt(secondPart);
 
         if (total.toString().length > 9) {
+          sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
           return parseInt(total).toExponential(5);
         }
 
+        sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
         return parseInt(total);
 
       case "=":
@@ -224,8 +233,6 @@ function returnResult(firstPart, operator, secondPart) {
         break;
     }
   }
-
-  sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
 }
 
 function buttonAction(btnPrsd) {
@@ -268,7 +275,7 @@ function buttonAction(btnPrsd) {
       break;
 
     case "=":
-      if (middlePanel.innerText !== "" && bottomPanel.innerText !== "") {
+      if (middlePanel.innerText !== "" && bottomPanel.innerText !== "" && bottomLeft.innerText !== "=") {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
         bottomLeft.innerHTML = "=";
       }
@@ -387,7 +394,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56328" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
