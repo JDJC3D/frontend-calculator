@@ -9,9 +9,11 @@
 
 body, html {
   height: 100vh;
+  margin: 0 auto;
 }
 
 .wrapper {
+  max-width: 1440px;
   height: 100vh;
   /* background: linear-gradient(to right, #04C6AE,#04C6AE 0% 30% ,#FAFAFA 70%); */
   background: linear-gradient(to right, #04C6AE 33%, #FAFAFA 33% );
