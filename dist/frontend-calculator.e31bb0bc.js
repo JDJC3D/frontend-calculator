@@ -132,6 +132,10 @@ function sendToScreen(data, location) {
 
 function clearScreen() {
   bottomPanel.innerText = "";
+
+  if (bottomLeft.innerText === "=") {
+    bottomLeft.innerText = "";
+  }
 }
 
 function clearAllScreens() {
@@ -147,6 +151,7 @@ function backspaceButton() {
 }
 
 function firstCalculation() {
+  bottomLeft.innerText = "";
   var firstPartOfCalculation = bottomPanel.innerText;
   clearScreen();
   sendToScreen(firstPartOfCalculation, middlePanel);
@@ -155,27 +160,29 @@ function firstCalculation() {
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
 
-  switch (operator) {
-    case "+":
-      return parseInt(firstPart) + parseInt(secondPart);
+  if (bottomLeft.innerText.length < 1) {
+    switch (operator) {
+      case "+":
+        return parseInt(firstPart) + parseInt(secondPart);
 
-    case "-":
-      return parseInt(firstPart) - parseInt(secondPart);
+      case "-":
+        return parseInt(firstPart) - parseInt(secondPart);
 
-    case "*":
-      return parseInt(firstPart) * parseInt(secondPart);
+      case "*":
+        return parseInt(firstPart) * parseInt(secondPart);
 
-    case "/":
-      return parseInt(firstPart) / parseInt(secondPart);
+      case "/":
+        return parseInt(firstPart) / parseInt(secondPart);
 
-    case "%":
-      return parseInt(firstPart) / 100;
+      case "%":
+        return parseInt(firstPart) / 100;
 
-    case "=":
-      break;
+      case "=":
+        break;
 
-    default:
-      break;
+      default:
+        break;
+    }
   }
 
   sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
@@ -312,7 +319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60810" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64258" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

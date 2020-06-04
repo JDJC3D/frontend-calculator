@@ -12,6 +12,9 @@ function sendToScreen(data, location) {
 
 function clearScreen() {
   bottomPanel.innerText = ``;
+  if (bottomLeft.innerText === `=`) {
+    bottomLeft.innerText = ``;
+  }
 }
 
 function clearAllScreens() {
@@ -27,6 +30,7 @@ function backspaceButton() {
 }
 
 function firstCalculation() {
+  bottomLeft.innerText = ``;
   const firstPartOfCalculation = bottomPanel.innerText;
   clearScreen();
   sendToScreen(firstPartOfCalculation, middlePanel);
@@ -34,22 +38,23 @@ function firstCalculation() {
 
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
-
-  switch (operator) {
-    case `+`:
-      return parseInt(firstPart) + parseInt(secondPart);
-    case `-`:
-      return parseInt(firstPart) - parseInt(secondPart);
-    case `*`:
-      return parseInt(firstPart) * parseInt(secondPart);
-    case `/`:
-      return parseInt(firstPart) / parseInt(secondPart);
-    case `%`:
-      return parseInt(firstPart) / 100;
-    case `=`:
-      break;
-    default:
-      break;
+  if (bottomLeft.innerText.length < 1) {
+    switch (operator) {
+      case `+`:
+        return parseInt(firstPart) + parseInt(secondPart);
+      case `-`:
+        return parseInt(firstPart) - parseInt(secondPart);
+      case `*`:
+        return parseInt(firstPart) * parseInt(secondPart);
+      case `/`:
+        return parseInt(firstPart) / parseInt(secondPart);
+      case `%`:
+        return parseInt(firstPart) / 100;
+      case `=`:
+        break;
+      default:
+        break;
+    }
   }
   sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
 }
@@ -90,7 +95,6 @@ function buttonAction(btnPrsd) {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
         bottomLeft.innerHTML = `=`;
       }
-
       break;
     default:
       sendToScreen(btnPrsd, bottomPanel);
