@@ -133,7 +133,7 @@ function sendToScreen(data, location) {
 function clearScreen() {
   bottomPanel.innerText = "";
 
-  if (bottomLeft.innerText === "=") {
+  if (bottomLeft.innner === "=") {
     bottomLeft.innerText = "";
   }
 }
@@ -175,7 +175,7 @@ function returnResult(firstPart, operator, secondPart) {
         return parseInt(firstPart) / parseInt(secondPart);
 
       case "%":
-        return parseInt(firstPart) / 100;
+        return parseInt(firstPart) / 100 * parseInt(secondPart);
 
       case "=":
         break;
@@ -319,7 +319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64258" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64653" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

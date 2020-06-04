@@ -12,7 +12,7 @@ function sendToScreen(data, location) {
 
 function clearScreen() {
   bottomPanel.innerText = ``;
-  if (bottomLeft.innerText === `=`) {
+  if (bottomLeft.innner === `=`) {
     bottomLeft.innerText = ``;
   }
 }
@@ -49,7 +49,7 @@ function returnResult(firstPart, operator, secondPart) {
       case `/`:
         return parseInt(firstPart) / parseInt(secondPart);
       case `%`:
-        return parseInt(firstPart) / 100;
+        return (parseInt(firstPart) / 100) * parseInt(secondPart);
       case `=`:
         break;
       default:
