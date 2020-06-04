@@ -153,8 +153,16 @@ function backspaceButton() {
 function firstCalculation() {
   bottomLeft.innerText = "";
   var firstPartOfCalculation = bottomPanel.innerText;
-  clearScreen();
-  sendToScreen(firstPartOfCalculation, middlePanel);
+
+  if (firstPartOfCalculation[0] !== "0") {
+    clearScreen();
+    sendToScreen(firstPartOfCalculation, middlePanel);
+  } else {
+    var firstPartOfCalculation2 = firstPartOfCalculation.substr(1);
+    console.log(firstPartOfCalculation2);
+    clearScreen();
+    sendToScreen(firstPartOfCalculation2, middlePanel);
+  }
 }
 
 function returnResult(firstPart, operator, secondPart) {
@@ -379,7 +387,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51074" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54400" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

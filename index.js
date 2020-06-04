@@ -32,8 +32,16 @@ function backspaceButton() {
 function firstCalculation() {
   bottomLeft.innerText = ``;
   const firstPartOfCalculation = bottomPanel.innerText;
-  clearScreen();
-  sendToScreen(firstPartOfCalculation, middlePanel);
+
+  if (firstPartOfCalculation[0] !== `0`) {
+    clearScreen();
+    sendToScreen(firstPartOfCalculation, middlePanel);
+  } else {
+    const firstPartOfCalculation2 = firstPartOfCalculation.substr(1);
+    console.log(firstPartOfCalculation2);
+    clearScreen();
+    sendToScreen(firstPartOfCalculation2, middlePanel);
+  }
 }
 
 function returnResult(firstPart, operator, secondPart) {
