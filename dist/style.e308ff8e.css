@@ -16,8 +16,7 @@ margin: 0 auto;
 .wrapper {
   max-width: 1440px;
   height: 100vh;
-  /* background: linear-gradient(to right, #04C6AE,#04C6AE 0% 30% ,#FAFAFA 70%); */
-  background: linear-gradient(to right, #04C6AE 33%, #FAFAFA 33% );
+  background: linear-gradient(to right, #04C6AE 31%, #FAFAFA 31% );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +32,7 @@ margin: 0 auto;
 }
 
 .calc-img {
-  height: 40em;
+  height: 37em;
 }
 
 
@@ -57,6 +56,7 @@ margin: 0 auto;
   display: flex;
   align-items: flex-end;
 }
+
 .box-1 {
   grid-area: top;
 }
@@ -87,6 +87,7 @@ margin: 0 auto;
   justify-content: flex-end;
   color: red;
   padding: 1em;
+  padding-left: 0;
 }
 
 .button-set {
@@ -122,6 +123,7 @@ margin: 0 auto;
   background-color: #04C6AE;
   color: white;
 }
+
 .divide-button {
   font-size: 1.3em;
   color: lightgreen;

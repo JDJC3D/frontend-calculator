@@ -124,7 +124,7 @@ var bottomLeft = document.querySelector(".box-3");
 var bottomPanel = document.querySelector(".box-4");
 
 function sendToScreen(data, location) {
-  if (bottomPanel.innerText.length < 10) {
+  if (bottomPanel.innerText.length < 9) {
     var addToScreen = document.createTextNode(data);
     location.appendChild(addToScreen);
   }
@@ -133,7 +133,7 @@ function sendToScreen(data, location) {
 function clearScreen() {
   bottomPanel.innerText = "";
 
-  if (bottomLeft.innner === "=") {
+  if (bottomLeft.inner === "=") {
     bottomLeft.innerText = "";
   }
 }
@@ -161,21 +161,53 @@ function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
 
   if (bottomLeft.innerText.length < 1) {
+    var total;
+
     switch (operator) {
       case "+":
-        return parseInt(firstPart) + parseInt(secondPart);
+        total = parseInt(firstPart) + parseInt(secondPart);
+
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+
+        return parseInt(total);
 
       case "-":
-        return parseInt(firstPart) - parseInt(secondPart);
+        total = parseInt(firstPart) - parseInt(secondPart);
+
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+
+        return parseInt(total);
 
       case "*":
-        return parseInt(firstPart) * parseInt(secondPart);
+        total = parseInt(firstPart) * parseInt(secondPart);
+
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+
+        return parseInt(total);
 
       case "/":
-        return parseInt(firstPart) / parseInt(secondPart);
+        total = parseInt(firstPart) / parseInt(secondPart);
+
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+
+        return parseInt(total);
 
       case "%":
-        return parseInt(firstPart) / 100 * parseInt(secondPart);
+        total = parseInt(firstPart) / 100 * parseInt(secondPart);
+
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+
+        return parseInt(total);
 
       case "=":
         break;
@@ -235,6 +267,20 @@ function buttonAction(btnPrsd) {
 
       break;
 
+    case ".":
+      if (!bottomPanel.innerText.includes(".")) {
+        sendToScreen(btnPrsd, bottomPanel);
+      }
+
+      break;
+
+    case "0":
+      if (bottomPanel.innerText[0] !== "0" || bottomPanel.innerText.length > 1) {
+        sendToScreen(btnPrsd, bottomPanel); // btnPrsd
+      }
+
+      break;
+
     default:
       sendToScreen(btnPrsd, bottomPanel);
   }
@@ -243,7 +289,7 @@ function buttonAction(btnPrsd) {
 function keyButtonsPress(kp, kpword) {
   // Get the charcode for the keypressed
   // Get only the numbers pressed
-  if (kp >= 48 && kp <= 57) {
+  if (kp >= 49 && kp <= 57) {
     sendToScreen(String.fromCharCode(kp), bottomPanel);
   }
 
@@ -274,6 +320,20 @@ function keyButtonsPress(kp, kpword) {
 
     case "Backspace":
       buttonAction("\u232B");
+      break;
+
+    case ".":
+      if (!bottomPanel.innerText.includes(".")) {
+        sendToScreen(String.fromCharCode(kp), bottomPanel);
+      }
+
+      break;
+
+    case "0":
+      if (bottomPanel.innerText[0] !== "0" || bottomPanel.innerText.length > 1) {
+        sendToScreen(String.fromCharCode(kp), bottomPanel);
+      }
+
       break;
 
     default:
@@ -319,7 +379,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51074" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

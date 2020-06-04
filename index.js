@@ -4,7 +4,7 @@ const bottomLeft = document.querySelector(`.box-3`);
 const bottomPanel = document.querySelector(`.box-4`);
 
 function sendToScreen(data, location) {
-  if (bottomPanel.innerText.length < 10) {
+  if (bottomPanel.innerText.length < 9) {
     const addToScreen = document.createTextNode(data);
     location.appendChild(addToScreen);
   }
@@ -12,7 +12,7 @@ function sendToScreen(data, location) {
 
 function clearScreen() {
   bottomPanel.innerText = ``;
-  if (bottomLeft.innner === `=`) {
+  if (bottomLeft.inner === `=`) {
     bottomLeft.innerText = ``;
   }
 }
@@ -39,17 +39,38 @@ function firstCalculation() {
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
   if (bottomLeft.innerText.length < 1) {
+    let total;
     switch (operator) {
       case `+`:
-        return parseInt(firstPart) + parseInt(secondPart);
+        total = parseInt(firstPart) + parseInt(secondPart);
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+        return parseInt(total);
       case `-`:
-        return parseInt(firstPart) - parseInt(secondPart);
+        total = parseInt(firstPart) - parseInt(secondPart);
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+        return parseInt(total);
       case `*`:
-        return parseInt(firstPart) * parseInt(secondPart);
+        total = parseInt(firstPart) * parseInt(secondPart);
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+        return parseInt(total);
       case `/`:
-        return parseInt(firstPart) / parseInt(secondPart);
+        total = parseInt(firstPart) / parseInt(secondPart);
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+        return parseInt(total);
       case `%`:
-        return (parseInt(firstPart) / 100) * parseInt(secondPart);
+        total = (parseInt(firstPart) / 100) * parseInt(secondPart);
+        if (total.toString().length > 9) {
+          return parseInt(total).toExponential(5);
+        }
+        return parseInt(total);
       case `=`:
         break;
       default:
@@ -96,6 +117,16 @@ function buttonAction(btnPrsd) {
         bottomLeft.innerHTML = `=`;
       }
       break;
+    case `.`:
+      if (!bottomPanel.innerText.includes(`.`)) {
+        sendToScreen(btnPrsd, bottomPanel);
+      }
+      break;
+    case `0`:
+      if (bottomPanel.innerText[0] !== `0` || bottomPanel.innerText.length > 1) {
+        sendToScreen(btnPrsd, bottomPanel); // btnPrsd
+      }
+      break;
     default:
       sendToScreen(btnPrsd, bottomPanel);
   }
@@ -104,7 +135,7 @@ function buttonAction(btnPrsd) {
 function keyButtonsPress(kp, kpword) {
   // Get the charcode for the keypressed
   // Get only the numbers pressed
-  if (kp >= 48 && kp <= 57) {
+  if (kp >= 49 && kp <= 57) {
     sendToScreen(String.fromCharCode(kp), bottomPanel);
   }
 
@@ -129,6 +160,16 @@ function keyButtonsPress(kp, kpword) {
       break;
     case `Backspace`:
       buttonAction(`⌫`);
+      break;
+    case `.`:
+      if (!bottomPanel.innerText.includes(`.`)) {
+        sendToScreen(String.fromCharCode(kp), bottomPanel);
+      }
+      break;
+    case `0`:
+      if (bottomPanel.innerText[0] !== `0` || bottomPanel.innerText.length > 1) {
+        sendToScreen(String.fromCharCode(kp), bottomPanel);
+      }
       break;
     default:
       break;
