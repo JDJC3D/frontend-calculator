@@ -34,7 +34,7 @@ function firstCalculation() {
 
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
-  sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
+
   switch (operator) {
     case `+`:
       return parseInt(firstPart) + parseInt(secondPart);
@@ -46,9 +46,12 @@ function returnResult(firstPart, operator, secondPart) {
       return parseInt(firstPart) / parseInt(secondPart);
     case `%`:
       return parseInt(firstPart) / 100;
+    case `=`:
+      break;
     default:
       break;
   }
+  sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
 }
 
 function buttonAction(btnPrsd) {
@@ -87,6 +90,7 @@ function buttonAction(btnPrsd) {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
         bottomLeft.innerHTML = `=`;
       }
+
       break;
     default:
       sendToScreen(btnPrsd, bottomPanel);

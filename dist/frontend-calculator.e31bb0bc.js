@@ -154,7 +154,6 @@ function firstCalculation() {
 
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
-  sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
 
   switch (operator) {
     case "+":
@@ -172,9 +171,14 @@ function returnResult(firstPart, operator, secondPart) {
     case "%":
       return parseInt(firstPart) / 100;
 
+    case "=":
+      break;
+
     default:
       break;
   }
+
+  sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
 }
 
 function buttonAction(btnPrsd) {
@@ -308,7 +312,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49843" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60810" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -9,9 +9,10 @@
 
 body, html {
   height: 100vh;
+}
+.page-wrapper {
   margin: 0 auto;
 }
-
 .wrapper {
   max-width: 1440px;
   height: 100vh;
