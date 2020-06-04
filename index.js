@@ -31,6 +31,8 @@ function backspaceButton() {
 
 function firstCalculation() {
   bottomLeft.innerText = ``;
+  middlePanel.innerText = ``;
+
   const firstPartOfCalculation = bottomPanel.innerText;
 
   if (firstPartOfCalculation[0] !== `0`) {
