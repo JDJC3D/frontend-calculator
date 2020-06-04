@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;800;900&display=swap');
+
 * {
   margin: 0;
   border: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', sans-serif;
+  color: #BEBEBE;
 }
 
 body, html {
@@ -11,15 +14,23 @@ body, html {
 .wrapper {
   height: 100vh;
   /* background: linear-gradient(to right, #04C6AE,#04C6AE 0% 30% ,#FAFAFA 70%); */
-  background: linear-gradient(to right, #04C6AE 30%, #FAFAFA 30% );
+  background: linear-gradient(to right, #04C6AE 33%, #FAFAFA 33% );
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.container-div {
+  width:30%;
 }
 
 .calculator-body {
-  width: 25%;
   margin: 0 auto;
+  max-width: 250px;
+}
+
+.calc-img {
+  height: 40em;
 }
 
 
@@ -51,20 +62,28 @@ body, html {
   grid-area: ml;
   text-align: right;
   word-wrap: break-word;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.7em;
+  padding-right: 1em;
 }
 
 .box-3 {
   grid-area: bl;
-  text-align: left;
-  align-self: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   word-wrap: break-word;
+  font-size: 0.9em;
 }
 
 .box-4 {
   grid-area: br;
-  text-align: right;
-  align-self: end;
-  word-wrap: break-word;
+  display: flex;
+  justify-content: flex-end;
+  color: red;
+  padding: 1em;
 }
 
 .button-set {
@@ -80,6 +99,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
   
 }
 
@@ -94,8 +114,33 @@ body, html {
 }
 
 .equals {
+  font-size: 2rem;
+  font-weight: 300;
   background-color: #04C6AE;
   color: white;
+}
+.divide-button {
+  font-size: 1.3em;
+  color: lightgreen;
+  font-weight: 500;
+}
+
+.multiply-button {
+  color: lightskyblue;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.minus-button {
+  color: orange;
+  font-weight: 500;
+  font-size: 1.3em;
+}
+
+.add-button {
+  color: purple;
+  font-weight: 500;
+  font-size: 1.3em;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

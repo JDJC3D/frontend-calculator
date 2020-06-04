@@ -178,12 +178,6 @@ function returnResult(firstPart, operator, secondPart) {
 }
 
 function buttonAction(btnPrsd) {
-  if (middlePanel !== "" && bottomLeft !== "" && bottomPanel !== "") {
-    document.addEventListener("keypress", function () {
-      return location.reload();
-    });
-  }
-
   switch (btnPrsd) {
     case "AC":
       clearAllScreens();
@@ -197,22 +191,22 @@ function buttonAction(btnPrsd) {
       backspaceButton();
       break;
 
-    case "\u2797":
+    case "\xF7":
       firstCalculation();
       sendToScreen("/", bottomLeft);
       break;
 
-    case "\u2716\uFE0F":
+    case "x":
       firstCalculation();
       sendToScreen("*", bottomLeft);
       break;
 
-    case "\u2796":
+    case "-":
       firstCalculation();
       sendToScreen("-", bottomLeft);
       break;
 
-    case "\u2795":
+    case "+":
       firstCalculation();
       sendToScreen("+", bottomLeft);
       break;
@@ -225,9 +219,7 @@ function buttonAction(btnPrsd) {
     case "=":
       if (middlePanel.innerText !== "" && bottomPanel.innerText !== "") {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
-        setTimeout(function () {
-          return location.reload();
-        }, 2500);
+        bottomLeft.innerHTML = "=";
       }
 
       break;
@@ -246,19 +238,19 @@ function keyButtonsPress(kp, kpword) {
 
   switch (kpword) {
     case "+":
-      buttonAction("\u2795");
+      buttonAction("+");
       break;
 
     case "-":
-      buttonAction("\u2796");
+      buttonAction("-");
       break;
 
     case "/":
-      buttonAction("\u2797");
+      buttonAction("\xF7");
       break;
 
     case "*":
-      buttonAction("\u2716\uFE0F");
+      buttonAction("x");
       break;
 
     case "Enter":

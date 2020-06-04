@@ -52,10 +52,6 @@ function returnResult(firstPart, operator, secondPart) {
 }
 
 function buttonAction(btnPrsd) {
-  if (middlePanel !== `` && bottomLeft !== `` && bottomPanel !== ``) {
-    document.addEventListener(`keypress`, () => location.reload());
-  }
-
   switch (btnPrsd) {
     case `AC`:
       clearAllScreens();
@@ -66,19 +62,19 @@ function buttonAction(btnPrsd) {
     case `⌫`:
       backspaceButton();
       break;
-    case `➗`:
+    case `÷`:
       firstCalculation();
       sendToScreen(`/`, bottomLeft);
       break;
-    case `✖️`:
+    case `x`:
       firstCalculation();
       sendToScreen(`*`, bottomLeft);
       break;
-    case `➖`:
+    case `-`:
       firstCalculation();
       sendToScreen(`-`, bottomLeft);
       break;
-    case `➕`:
+    case `+`:
       firstCalculation();
       sendToScreen(`+`, bottomLeft);
       break;
@@ -89,7 +85,7 @@ function buttonAction(btnPrsd) {
     case `=`:
       if (middlePanel.innerText !== `` && bottomPanel.innerText !== ``) {
         sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
-        setTimeout(() => location.reload(), 2500);
+        bottomLeft.innerHTML = `=`;
       }
       break;
     default:
@@ -99,7 +95,6 @@ function buttonAction(btnPrsd) {
 
 function keyButtonsPress(kp, kpword) {
   // Get the charcode for the keypressed
-
   // Get only the numbers pressed
   if (kp >= 48 && kp <= 57) {
     sendToScreen(String.fromCharCode(kp), bottomPanel);
@@ -107,16 +102,16 @@ function keyButtonsPress(kp, kpword) {
 
   switch (kpword) {
     case `+`:
-      buttonAction(`➕`);
+      buttonAction(`+`);
       break;
     case `-`:
-      buttonAction(`➖`);
+      buttonAction(`-`);
       break;
     case `/`:
-      buttonAction(`➗`);
+      buttonAction(`÷`);
       break;
     case `*`:
-      buttonAction(`✖️`);
+      buttonAction(`x`);
       break;
     case `Enter`:
       buttonAction(`=`);
