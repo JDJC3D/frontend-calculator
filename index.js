@@ -4,8 +4,10 @@ const bottomLeft = document.querySelector(`.box-3`);
 const bottomPanel = document.querySelector(`.box-4`);
 
 function sendToScreen(data, location) {
-  const addToScreen = document.createTextNode(data);
-  location.appendChild(addToScreen);
+  if (bottomPanel.innerText.length < 10) {
+    const addToScreen = document.createTextNode(data);
+    location.appendChild(addToScreen);
+  }
 }
 
 function clearScreen() {
@@ -33,12 +35,27 @@ function firstCalculation() {
 function returnResult(firstPart, operator, secondPart) {
   clearAllScreens();
   sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-  if (operator === `+`) {
-    return parseInt(firstPart) + parseInt(secondPart);
+  switch (operator) {
+    case `+`:
+      return parseInt(firstPart) + parseInt(secondPart);
+    case `-`:
+      return parseInt(firstPart) - parseInt(secondPart);
+    case `*`:
+      return parseInt(firstPart) * parseInt(secondPart);
+    case `/`:
+      return parseInt(firstPart) / parseInt(secondPart);
+    case `%`:
+      return parseInt(firstPart) / 100;
+    default:
+      break;
   }
 }
 
 function buttonAction(btnPrsd) {
+  if (middlePanel !== `` && bottomLeft !== `` && bottomPanel !== ``) {
+    document.addEventListener(`keypress`, () => location.reload());
+  }
+
   switch (btnPrsd) {
     case `AC`:
       clearAllScreens();
@@ -50,27 +67,68 @@ function buttonAction(btnPrsd) {
       backspaceButton();
       break;
     case `➗`:
+      firstCalculation();
+      sendToScreen(`/`, bottomLeft);
       break;
     case `✖️`:
+      firstCalculation();
+      sendToScreen(`*`, bottomLeft);
       break;
     case `➖`:
+      firstCalculation();
+      sendToScreen(`-`, bottomLeft);
       break;
     case `➕`:
       firstCalculation();
       sendToScreen(`+`, bottomLeft);
       break;
+    case `%`:
+      firstCalculation();
+      sendToScreen(`%`, bottomLeft);
+      break;
     case `=`:
-      sendToScreen(
-        returnResult(
-          middlePanel.innerText,
-          bottomLeft.innerText,
-          bottomPanel.innerText
-        ),
-        bottomPanel
-      );
+      if (middlePanel.innerText !== `` && bottomPanel.innerText !== ``) {
+        sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
+        setTimeout(() => location.reload(), 2500);
+      }
       break;
     default:
       sendToScreen(btnPrsd, bottomPanel);
+  }
+}
+
+function keyButtonsPress(kp, kpword) {
+  // Get the charcode for the keypressed
+
+  // Get only the numbers pressed
+  if (kp >= 48 && kp <= 57) {
+    sendToScreen(String.fromCharCode(kp), bottomPanel);
+  }
+
+  switch (kpword) {
+    case `+`:
+      buttonAction(`➕`);
+      break;
+    case `-`:
+      buttonAction(`➖`);
+      break;
+    case `/`:
+      buttonAction(`➗`);
+      break;
+    case `*`:
+      buttonAction(`✖️`);
+      break;
+    case `Enter`:
+      buttonAction(`=`);
+      break;
+    case `%`:
+      buttonAction(`%`);
+      break;
+    case `Backspace`:
+      buttonAction(`⌫`);
+      break;
+    default:
+      break;
   }
 }
 
@@ -81,10 +139,7 @@ keyButton.forEach(element => {
 });
 
 document.addEventListener('keypress', keyPressed => {
-  // Get the charcode for the keypressed
   const kp = keyPressed.charCode;
-  // Get only the numbers pressed
-  if (kp >= 48 && kp <= 57) {
-    sendToScreen(String.fromCharCode(kp), bottomPanel);
-  }
+  const kpword = keyPressed.key;
+  keyButtonsPress(kp, kpword);
 });

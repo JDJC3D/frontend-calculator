@@ -117,79 +117,178 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"index.js":[function(require,module,exports) {
+var keyButton = document.querySelectorAll(".button");
+var middlePanel = document.querySelector(".box-2");
+var bottomLeft = document.querySelector(".box-3");
+var bottomPanel = document.querySelector(".box-4");
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+function sendToScreen(data, location) {
+  if (bottomPanel.innerText.length < 10) {
+    var addToScreen = document.createTextNode(data);
+    location.appendChild(addToScreen);
+  }
+}
+
+function clearScreen() {
+  bottomPanel.innerText = "";
+}
+
+function clearAllScreens() {
+  middlePanel.innerText = "";
+  bottomLeft.innerText = "";
+  clearScreen();
+}
+
+function backspaceButton() {
+  var tempValue = bottomPanel.innerText;
+  clearScreen();
+  sendToScreen(tempValue.slice(0, -1), bottomPanel);
+}
+
+function firstCalculation() {
+  var firstPartOfCalculation = bottomPanel.innerText;
+  clearScreen();
+  sendToScreen(firstPartOfCalculation, middlePanel);
+}
+
+function returnResult(firstPart, operator, secondPart) {
+  clearAllScreens();
+  sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
+
+  switch (operator) {
+    case "+":
+      return parseInt(firstPart) + parseInt(secondPart);
+
+    case "-":
+      return parseInt(firstPart) - parseInt(secondPart);
+
+    case "*":
+      return parseInt(firstPart) * parseInt(secondPart);
+
+    case "/":
+      return parseInt(firstPart) / parseInt(secondPart);
+
+    case "%":
+      return parseInt(firstPart) / 100;
+
+    default:
+      break;
+  }
+}
+
+function buttonAction(btnPrsd) {
+  if (middlePanel !== "" && bottomLeft !== "" && bottomPanel !== "") {
+    document.addEventListener("keypress", function () {
+      return location.reload();
+    });
   }
 
-  return bundleURL;
-}
+  switch (btnPrsd) {
+    case "AC":
+      clearAllScreens();
+      break;
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    case "C":
+      clearScreen();
+      break;
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
+    case "\u232B":
+      backspaceButton();
+      break;
 
-  return '/';
-}
+    case "\u2797":
+      firstCalculation();
+      sendToScreen("/", bottomLeft);
+      break;
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+    case "\u2716\uFE0F":
+      firstCalculation();
+      sendToScreen("*", bottomLeft);
+      break;
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+    case "\u2796":
+      firstCalculation();
+      sendToScreen("-", bottomLeft);
+      break;
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+    case "\u2795":
+      firstCalculation();
+      sendToScreen("+", bottomLeft);
+      break;
 
-  newLink.onload = function () {
-    link.remove();
-  };
+    case "%":
+      firstCalculation();
+      sendToScreen("%", bottomLeft);
+      break;
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+    case "=":
+      if (middlePanel.innerText !== "" && bottomPanel.innerText !== "") {
+        sendToScreen(returnResult(middlePanel.innerText, bottomLeft.innerText, bottomPanel.innerText), bottomPanel);
+        setTimeout(function () {
+          return location.reload();
+        }, 2500);
       }
-    }
 
-    cssTimeout = null;
-  }, 50);
+      break;
+
+    default:
+      sendToScreen(btnPrsd, bottomPanel);
+  }
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+function keyButtonsPress(kp, kpword) {
+  // Get the charcode for the keypressed
+  // Get only the numbers pressed
+  if (kp >= 48 && kp <= 57) {
+    sendToScreen(String.fromCharCode(kp), bottomPanel);
+  }
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  switch (kpword) {
+    case "+":
+      buttonAction("\u2795");
+      break;
+
+    case "-":
+      buttonAction("\u2796");
+      break;
+
+    case "/":
+      buttonAction("\u2797");
+      break;
+
+    case "*":
+      buttonAction("\u2716\uFE0F");
+      break;
+
+    case "Enter":
+      buttonAction("=");
+      break;
+
+    case "%":
+      buttonAction("%");
+      break;
+
+    case "Backspace":
+      buttonAction("\u232B");
+      break;
+
+    default:
+      break;
+  }
+}
+
+keyButton.forEach(function (element) {
+  element.addEventListener('click', function (event) {
+    buttonAction(event.srcElement.innerText);
+  });
+});
+document.addEventListener('keypress', function (keyPressed) {
+  var kp = keyPressed.charCode;
+  var kpword = keyPressed.key;
+  keyButtonsPress(kp, kpword);
+});
+},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +492,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/frontend-calculator.e31bb0bc.js.map
