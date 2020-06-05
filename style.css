@@ -7,17 +7,12 @@
   color: #BEBEBE;
 }
 
-body, html {
-  height: 100vh;
-}
-
 .page-wrapper {
 margin: 0 auto;
 }
 
 .wrapper {
   max-width: 1440px;
-  height: 100vh;
   background: linear-gradient(to right, #04C6AE 31%, #FAFAFA 31% );
   display: flex;
   justify-content: center;
