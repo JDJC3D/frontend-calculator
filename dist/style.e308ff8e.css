@@ -8,7 +8,7 @@
 }
 
 .page-wrapper {
-margin: 0 auto;
+  margin: 0 auto;
 }
 
 .wrapper {
@@ -20,7 +20,7 @@ margin: 0 auto;
 }
 
 .container-div {
-  width:30%;
+  width:30%;  
 }
 
 .calculator-body {
@@ -37,7 +37,7 @@ margin: 0 auto;
 .output-panel {
   font-size: 2rem;
   width: 99.3%;
-  height: 20vh;
+  height: 170px;
   border: 1px solid #EFEFEF;
   background-color: white;
   display: grid;
@@ -89,7 +89,7 @@ margin: 0 auto;
 }
 
 .button-set {
-  min-height: 30vh;
+  min-height: 250px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
