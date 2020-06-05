@@ -26,6 +26,7 @@ margin: 0 auto;
 .calculator-body {
   margin: 0 auto;
   max-width: 250px;
+  border: 0.8px solid #EFEFEF;
 }
 
 .calc-img {
