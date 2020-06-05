@@ -177,59 +177,59 @@ function returnResult(firstPart, operator, secondPart) {
 
     switch (operator) {
       case "+":
-        total = parseInt(firstPart) + parseInt(secondPart);
+        total = parseFloat(firstPart) + parseFloat(secondPart);
 
         if (total.toString().length > 9) {
           sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
 
         sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
 
       case "-":
-        total = parseInt(firstPart) - parseInt(secondPart);
+        total = parseFloat(firstPart) - parseFloat(secondPart);
 
         if (total.toString().length > 9) {
           sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
 
         sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
 
       case "*":
-        total = parseInt(firstPart) * parseInt(secondPart);
+        total = parseFloat(firstPart) * parseFloat(secondPart);
 
         if (total.toString().length > 9) {
           sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
 
         sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
 
       case "/":
-        total = parseInt(firstPart) / parseInt(secondPart);
+        total = parseFloat(firstPart) / parseFloat(secondPart);
 
         if (total.toString().length > 9) {
           sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
 
         sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
 
       case "%":
-        total = parseInt(firstPart) / 100 * parseInt(secondPart);
+        total = parseFloat(firstPart) / 100 * parseFloat(secondPart);
 
         if (total.toString().length > 9) {
           sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
 
         sendToScreen("".concat(firstPart, " ").concat(operator, " ").concat(secondPart), middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
 
       case "=":
         break;
@@ -399,7 +399,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54851" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

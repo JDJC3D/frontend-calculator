@@ -56,45 +56,45 @@ function returnResult(firstPart, operator, secondPart) {
     let total;
     switch (operator) {
       case `+`:
-        total = parseInt(firstPart) + parseInt(secondPart);
+        total = parseFloat(firstPart) + parseFloat(secondPart);
         if (total.toString().length > 9) {
           sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
         sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
       case `-`:
-        total = parseInt(firstPart) - parseInt(secondPart);
+        total = parseFloat(firstPart) - parseFloat(secondPart);
         if (total.toString().length > 9) {
           sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
         sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
       case `*`:
-        total = parseInt(firstPart) * parseInt(secondPart);
+        total = parseFloat(firstPart) * parseFloat(secondPart);
         if (total.toString().length > 9) {
           sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
         sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
       case `/`:
-        total = parseInt(firstPart) / parseInt(secondPart);
+        total = parseFloat(firstPart) / parseFloat(secondPart);
         if (total.toString().length > 9) {
           sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
         sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
       case `%`:
-        total = (parseInt(firstPart) / 100) * parseInt(secondPart);
+        total = (parseFloat(firstPart) / 100) * parseFloat(secondPart);
         if (total.toString().length > 9) {
           sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-          return parseInt(total).toExponential(5);
+          return parseFloat(total).toExponential(5);
         }
         sendToScreen(`${firstPart} ${operator} ${secondPart}`, middlePanel);
-        return parseInt(total);
+        return parseFloat(total);
       case `=`:
         break;
       default:
