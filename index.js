@@ -1,9 +1,7 @@
 const userWindowHeight = window.innerHeight;
-
 document.querySelector('body').style.minHeight = `${userWindowHeight}px`;
 document.querySelector('html').style.minHeight = `${userWindowHeight}px`;
 document.querySelector('.wrapper').style.minHeight = `${userWindowHeight}px`;
-// body), html;
 
 const keyButton = document.querySelectorAll(`.button`);
 const middlePanel = document.querySelector(`.box-2`);
