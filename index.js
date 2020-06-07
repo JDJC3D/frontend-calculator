@@ -9,6 +9,9 @@ const bottomLeft = document.querySelector(`.box-3`);
 const bottomPanel = document.querySelector(`.box-4`);
 
 function sendToScreen(data, location) {
+  if (bottomLeft.innerHTML === `=` && bottomPanel.innerHTML !== ``) {
+    clearAllScreens();
+  }
   if (bottomPanel.innerText.length < 9) {
     const addToScreen = document.createTextNode(data);
     location.appendChild(addToScreen);

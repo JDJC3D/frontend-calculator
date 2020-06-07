@@ -128,6 +128,10 @@ var bottomLeft = document.querySelector(".box-3");
 var bottomPanel = document.querySelector(".box-4");
 
 function sendToScreen(data, location) {
+  if (bottomLeft.innerHTML === "=" && bottomPanel.innerHTML !== "") {
+    clearAllScreens();
+  }
+
   if (bottomPanel.innerText.length < 9) {
     var addToScreen = document.createTextNode(data);
     location.appendChild(addToScreen);
@@ -399,7 +403,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54851" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62793" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
